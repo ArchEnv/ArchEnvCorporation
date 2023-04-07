@@ -57,6 +57,9 @@ void ATP_FirstPersonCharacter::SetupPlayerInputComponent(class UInputComponent* 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ATP_FirstPersonCharacter::Look);
 
+		//Switch movement mode
+		EnhancedInputComponent->BindAction(SwitchMovementModeAction, ETriggerEvent::Triggered, this, &ATP_FirstPersonCharacter::SwitchMovementMode);
+
 	}
 }
 
@@ -64,13 +67,14 @@ void ATP_FirstPersonCharacter::SetupPlayerInputComponent(class UInputComponent* 
 void ATP_FirstPersonCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
-	const FVector2D MovementVector = Value.Get<FVector2D>();
+	const FVector MovementVector = Value.Get<FVector>();
 
 	if (Controller != nullptr)
 	{
 		// add movement 
 		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
 		AddMovementInput(GetActorRightVector(), MovementVector.X);
+		AddMovementInput(GetActorUpVector(), MovementVector.Z);
 	}
 }
 
@@ -84,5 +88,26 @@ void ATP_FirstPersonCharacter::Look(const FInputActionValue& Value)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+void ATP_FirstPersonCharacter::SwitchMovementMode(const FInputActionValue& Value)
+{
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			if (GetCharacterMovement()->IsFlying())
+			{
+				GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+				Subsystem->AddMappingContext(WalkMappingContext, 0);
+				Subsystem->RemoveMappingContext(FlightMappingContext);
+			}else
+			{
+				GetCharacterMovement()->SetMovementMode(MOVE_Flying);
+				Subsystem->AddMappingContext(FlightMappingContext, 0);
+				Subsystem->RemoveMappingContext(WalkMappingContext);
+			}
+		}
 	}
 }
