@@ -3,3 +3,7 @@
 
 #include "AE_PlayerController.h"
 
+AAE_PlayerController::AAE_PlayerController()
+{
+	bEnableClickEvents = true;
+}

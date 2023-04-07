@@ -13,5 +13,8 @@ UCLASS()
 class ARCHENV_API AAE_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
+
+public:
+	AAE_PlayerController();
 	
 };

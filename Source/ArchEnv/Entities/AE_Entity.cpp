@@ -2,26 +2,34 @@
 
 
 #include "AE_Entity.h"
+#include "ArchEnv/UE5Environment/AE_HUD.h"
+#include "Kismet/GameplayStatics.h"
 
-// Sets default values
 AAE_Entity::AAE_Entity()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	PrimaryActorTick.bCanEverTick = false;
+	
+	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh Component"));
+	SetRootComponent(StaticMeshComponent);
 }
 
-// Called when the game starts or when spawned
 void AAE_Entity::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
-void AAE_Entity::Tick(float DeltaTime)
+void AAE_Entity::NotifyActorOnClicked(FKey ButtonPressed)
 {
-	Super::Tick(DeltaTime);
-
+	Super::NotifyActorOnClicked(ButtonPressed);
+	
+	if (const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0))
+	{
+		AAE_HUD* HUD = Cast<AAE_HUD>(PlayerController->GetHUD());
+		HUD->SetSelectedEntity(this);
+		HUD->ShowMaterialSelectorWidget();
+	}
 }
+
 
