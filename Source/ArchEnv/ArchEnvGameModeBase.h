@@ -13,5 +13,4 @@ UCLASS()
 class ARCHENV_API AArchEnvGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
 };
