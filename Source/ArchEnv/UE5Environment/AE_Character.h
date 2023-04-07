@@ -1,11 +1,11 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "TP_FirstPersonCharacter.generated.h"
+#include "AE_Character.generated.h"
 
 class UInputComponent;
 class UInputMappingContext;
@@ -17,7 +17,7 @@ class UAnimMontage;
 class USoundBase;
 
 UCLASS(config=Game)
-class ATP_FirstPersonCharacter : public ACharacter
+class ARCHENV_API AAE_Character : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -44,10 +44,10 @@ class ATP_FirstPersonCharacter : public ACharacter
 	UInputAction* SwitchMovementModeAction;
 	
 public:
-	ATP_FirstPersonCharacter();
+	AAE_Character();
 
 protected:
-	virtual void BeginPlay();
+	virtual void BeginPlay() override;
 
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
@@ -62,7 +62,8 @@ protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
 
-public:
+	public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
 };

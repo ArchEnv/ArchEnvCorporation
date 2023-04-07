@@ -1,6 +1,7 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Fill out your copyright notice in the Description page of Project Settings.
 
-#include "TP_FirstPersonCharacter.h"
+
+#include "AE_Character.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -8,10 +9,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-//////////////////////////////////////////////////////////////////////////
-// ATP_FirstPersonCharacter
-
-ATP_FirstPersonCharacter::ATP_FirstPersonCharacter()
+// Sets default values
+AAE_Character::AAE_Character()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
@@ -23,7 +22,8 @@ ATP_FirstPersonCharacter::ATP_FirstPersonCharacter()
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 }
 
-void ATP_FirstPersonCharacter::BeginPlay()
+// Called when the game starts or when spawned
+void AAE_Character::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
@@ -44,27 +44,31 @@ void ATP_FirstPersonCharacter::BeginPlay()
 		PlayerController->SetShowMouseCursor(true);
 		PlayerController->SetInputMode(FInputModeGameAndUI());	
 	}
+	
 }
 
-void ATP_FirstPersonCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+// Called to bind functionality to input
+void AAE_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		//Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATP_FirstPersonCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAE_Character::Move);
 
 		//Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ATP_FirstPersonCharacter::Look);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAE_Character::Look);
 
 		//Switch movement mode
-		EnhancedInputComponent->BindAction(SwitchMovementModeAction, ETriggerEvent::Triggered, this, &ATP_FirstPersonCharacter::SwitchMovementMode);
+		EnhancedInputComponent->BindAction(SwitchMovementModeAction, ETriggerEvent::Triggered, this, &AAE_Character::SwitchMovementMode);
 
 	}
 }
 
 
-void ATP_FirstPersonCharacter::Move(const FInputActionValue& Value)
+void AAE_Character::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	const FVector MovementVector = Value.Get<FVector>();
@@ -78,7 +82,7 @@ void ATP_FirstPersonCharacter::Move(const FInputActionValue& Value)
 	}
 }
 
-void ATP_FirstPersonCharacter::Look(const FInputActionValue& Value)
+void AAE_Character::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
@@ -91,7 +95,7 @@ void ATP_FirstPersonCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
-void ATP_FirstPersonCharacter::SwitchMovementMode(const FInputActionValue& Value)
+void AAE_Character::SwitchMovementMode(const FInputActionValue& Value)
 {
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
