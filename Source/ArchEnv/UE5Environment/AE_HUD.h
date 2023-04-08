@@ -15,10 +15,11 @@ class ARCHENV_API AAE_HUD : public AHUD
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
-	AAE_Entity* SelectedEntity;
-
 public:
+
+	UPROPERTY(BlueprintReadOnly)
+	AAE_Entity* SelectedEntity;
+	
 	UFUNCTION(BlueprintCallable)
 	AAE_Entity* GetSelectedEntity() const;
 

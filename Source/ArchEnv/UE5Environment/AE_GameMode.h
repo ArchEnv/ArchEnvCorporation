@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ArchEnv/Materials/AE_ConfigurableMaterial.h"
 #include "GameFramework/GameModeBase.h"
 #include "AE_GameMode.generated.h"
 
