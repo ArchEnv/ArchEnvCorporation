@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "AE_Entity.generated.h"
 
-class UAE_ConfigurableMaterial;
+class UAE_Material;
 UCLASS()
 class ARCHENV_API AAE_Entity : public AActor
 {
@@ -20,15 +20,15 @@ public:
 	UStaticMeshComponent* StaticMeshComponent;
 
 	UFUNCTION(BlueprintCallable)
-	void SetConfigurableMaterial(UAE_ConfigurableMaterial* NewConfigurableMaterial);
+	void SetConfigurableMaterial(UAE_Material* NewConfigurableMaterial);
 
 	UFUNCTION(BlueprintCallable)
-	UAE_ConfigurableMaterial* GetConfigurableMaterial();
+	UAE_Material* GetConfigurableMaterial();
 
 protected:
 
 	UPROPERTY()
-	UAE_ConfigurableMaterial* ConfigurableMaterial;
+	UAE_Material* ConfigurableMaterial;
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

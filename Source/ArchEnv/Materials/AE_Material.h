@@ -5,14 +5,14 @@
 #include "CoreMinimal.h"
 #include "ArchEnv/Interfaces/AE_ConfigurableItems.h"
 #include "UObject/NoExportTypes.h"
-#include "AE_ConfigurableMaterial.generated.h"
+#include "AE_Material.generated.h"
 
 class UAE_Image;
 /**
  * 
  */
 UCLASS(Blueprintable)
-class ARCHENV_API UAE_ConfigurableMaterial : public UObject, public IAE_ConfigurableItems
+class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems
 {
 	GENERATED_BODY()
 protected:

@@ -3,7 +3,7 @@
 
 #include "AE_Entity.h"
 
-#include "ArchEnv/Materials/AE_ConfigurableMaterial.h"
+#include "ArchEnv/Materials/AE_Material.h"
 #include "ArchEnv/UE5Environment/AE_HUD.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -16,12 +16,12 @@ AAE_Entity::AAE_Entity()
 	SetRootComponent(StaticMeshComponent);
 }
 
-void AAE_Entity::SetConfigurableMaterial(UAE_ConfigurableMaterial* NewConfigurableMaterial)
+void AAE_Entity::SetConfigurableMaterial(UAE_Material* NewConfigurableMaterial)
 {
 	ConfigurableMaterial = NewConfigurableMaterial;
 }
 
-UAE_ConfigurableMaterial* AAE_Entity::GetConfigurableMaterial()
+UAE_Material* AAE_Entity::GetConfigurableMaterial()
 {
 	return ConfigurableMaterial;
 }
