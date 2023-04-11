@@ -10,7 +10,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class ARCHENV_API UAE_MaterialController : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
@@ -26,4 +26,13 @@ public:
 
 	UFUNCTION()
 	void SetConfigurableMaterials(const TArray<UAE_ConfigurableMaterial*>& NewConfigurableMaterials);
+	
+
+	UFUNCTION(BlueprintCallable)
+	TArray<UAE_ConfigurableMaterial*> GetConfigurableMaterialsInLocalFiles();
+
+	UFUNCTION(BlueprintCallable)
+	void SaveConfigurableMaterialsInLocalFiles(TArray<UAE_ConfigurableMaterial*> NewConfigurableMaterials);
+	
+
 };
