@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ArchEnv/Interfaces/AE_GenericViewControl.h"
 #include "ArchEnv/Interfaces/DataAccess/AE_MaterialDAO.h"
-#include "AE_MaterialDAOSubsystem.generated.h"
+#include "AE_MaterialDAOManager.generated.h"
 
 /**
  * 
  */
 UCLASS(Abstract)
-class ARCHENV_API UAE_MaterialDAOSubsystem : public UObject, public IAE_MaterialDAO
+class ARCHENV_API UAE_MaterialDAOManager : public UObject, public IAE_MaterialDAO, public IAE_GenericViewControl
 {
 	GENERATED_BODY()
 

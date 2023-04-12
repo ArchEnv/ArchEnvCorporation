@@ -3,25 +3,30 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AE_MaterialDAOSubsystem.h"
 #include "ArchEnv/Interfaces/DataAccess/AE_MaterialDAO.h"
-#include "AE_MaterialLocalStorageDAOSubsystem.generated.h"
+#include "ArchEnv/Subsystems/DataAccess/Materials/AE_MaterialDAOManager.h"
+#include "AE_MaterialLocalStorageDAOManager.generated.h"
 
+class UAE_MaterialLocalStoragePathsSGO;
 class UAE_Material;
 
 /**
  * 
  */
 UCLASS()
-class ARCHENV_API UAE_MaterialLocalStorageDAOSubsystem : public UAE_MaterialDAOSubsystem
+class ARCHENV_API UAE_MaterialLocalStorageDAOManager : public UAE_MaterialDAOManager
 {
 	GENERATED_BODY()
 public:
-	UAE_MaterialLocalStorageDAOSubsystem();
+	UAE_MaterialLocalStorageDAOManager();
 	
 	virtual void CreateMaterial_Implementation(UAE_Material* Material) override;
 	virtual void DeleteMaterial_Implementation(UAE_Material* Material) override;
 	virtual TArray<UAE_Material*> GetAllMaterials_Implementation() override;
 	virtual void UpdateMaterial_Implementation(UAE_Material* Material) override;
+
+protected:
+
+	void AsyncMaterialSaveToDisk(const UAE_Material* SaveMaterial);
 	
 };

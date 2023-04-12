@@ -15,16 +15,5 @@ class ARCHENV_API UAE_GameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 
-public:
-
-	UAE_GameInstance();
-	
-	UFUNCTION(BlueprintCallable)
-	UAE_MaterialDAOSubsystem* GetMaterialDaoSubsystem() const;
-
-protected:
-
-	UPROPERTY()
-	UAE_MaterialDAOSubsystem* MaterialDAOSubsystem;
 
 };
