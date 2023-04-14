@@ -25,6 +25,10 @@ public:
 	virtual TArray<UAE_Material*> GetAllMaterials_Implementation() override;
 	virtual void UpdateMaterial_Implementation(UAE_Material* Material) override;
 
+	virtual TArray<UObject*> GetItems_Implementation() override;
+	virtual void OnItemClicked_Implementation(UObject* Item) override;
+	virtual TArray<UObject*> FilterItemsByString_Implementation(const FString& String) override;
+
 protected:
 
 	void AsyncMaterialSaveToDisk(const UAE_Material* SaveMaterial);

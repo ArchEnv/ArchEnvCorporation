@@ -4,6 +4,7 @@
 #include "AE_MaterialLocalStorageDAOManager.h"
 
 #include "AE_MaterialSGO.h"
+#include "ArchEnv/UE5Environment/AE_HUD.h"
 #include "Kismet/GameplayStatics.h"
 
 UAE_MaterialLocalStorageDAOManager::UAE_MaterialLocalStorageDAOManager()
@@ -33,6 +34,33 @@ void UAE_MaterialLocalStorageDAOManager::UpdateMaterial_Implementation(UAE_Mater
 	const int32 index = Materials.Find(Material);
 	Materials[index] = Material;
 	AsyncMaterialSaveToDisk(Material);
+}
+
+TArray<UObject*> UAE_MaterialLocalStorageDAOManager::GetItems_Implementation()
+{
+	return TArray<UObject*>(Materials);
+}
+
+void UAE_MaterialLocalStorageDAOManager::OnItemClicked_Implementation(UObject* Item)
+{
+	if (const APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), 0))
+	{
+		const AAE_HUD* HUD = PC->GetHUD<AAE_HUD>();
+		HUD->GetSelectedEntity()->SetConfigurableMaterial(Cast<UAE_Material>(Item));
+	}
+}
+
+TArray<UObject*> UAE_MaterialLocalStorageDAOManager::FilterItemsByString_Implementation(const FString& String)
+{
+	TArray<UObject*> FilteredArray;
+	for (const auto Material : Materials)
+	{
+		if (Material->GetName().Contains(String))
+		{
+			FilteredArray.Add(Material);
+		}
+	}
+	return FilteredArray;
 }
 
 void UAE_MaterialLocalStorageDAOManager::AsyncMaterialSaveToDisk(const UAE_Material* SaveMaterial)

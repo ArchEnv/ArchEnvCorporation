@@ -15,10 +15,13 @@ class ARCHENV_API AAE_HUD : public AHUD
 {
 	GENERATED_BODY()
 
-public:
-
+protected:
+	
 	UPROPERTY(BlueprintReadOnly)
 	AAE_Entity* SelectedEntity;
+
+public:
+
 	
 	UFUNCTION(BlueprintCallable)
 	AAE_Entity* GetSelectedEntity() const;
@@ -26,10 +29,10 @@ public:
 	UFUNCTION()
 	void SetSelectedEntity(AAE_Entity* NewSelectedEntity);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void ShowMaterialSelectorWidget();
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void HideMaterialSelectorWidget();
 
 	AAE_HUD();

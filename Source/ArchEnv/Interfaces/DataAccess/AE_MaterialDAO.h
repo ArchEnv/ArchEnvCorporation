@@ -8,7 +8,7 @@
 #include "AE_MaterialDAO.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE(MinimalAPI, BlueprintType)
 class UAE_MaterialDAO : public UInterface
 {
 	GENERATED_BODY()
@@ -26,13 +26,18 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void CreateMaterial(UAE_Material* Material);
+	virtual void CreateMaterial_Implementation(UAE_Material* Material) PURE_VIRTUAL(IAE_MaterialDAO::CreateMaterial);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	TArray<UAE_Material*> GetAllMaterials();
-	
+	virtual TArray<UAE_Material*> GetAllMaterials_Implementation() PURE_VIRTUAL(IAE_MaterialDAO::GetAllMaterials, return {};);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void UpdateMaterial(UAE_Material* Material);
-	
+	virtual void UpdateMaterial_Implementation(UAE_Material* Material) PURE_VIRTUAL(IAE_MaterialDAO::UpdateMaterial);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void DeleteMaterial(UAE_Material* Material);
+	virtual void DeleteMaterial_Implementation(UAE_Material* Material) PURE_VIRTUAL(IAE_MaterialDAO::DeleteMaterial);
+	
 };

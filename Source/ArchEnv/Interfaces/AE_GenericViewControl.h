@@ -25,11 +25,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
  	TArray<UObject*> GetItems();
+	virtual TArray<UObject*> GetItems_Implementation() PURE_VIRTUAL(IAE_GenericViewControl::GetItems, return {};);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void OnItemClicked(UObject* Item);
+	virtual void OnItemClicked_Implementation(UObject* Item) PURE_VIRTUAL(IAE_GenericViewControl::OnItemClicked);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	TArray<UObject*> FilterItemsByName(const FString& ItemName);
-	
+	TArray<UObject*> FilterItemsByString(const FString& String);
+	virtual TArray<UObject*> FilterItemsByString_Implementation(const FString& String) PURE_VIRTUAL(IAE_GenericViewControl::FilterItemsByString, return {};);
 };
