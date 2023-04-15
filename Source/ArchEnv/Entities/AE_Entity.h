@@ -26,7 +26,7 @@ public:
 	UAE_Material* GetConfigurableMaterial();
 
 	UFUNCTION()
-	void SetHighlightEntity(bool Value);
+	void SetHighlightEntity(const bool &Value);
 
 protected:
 

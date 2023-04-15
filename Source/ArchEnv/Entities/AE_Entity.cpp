@@ -14,8 +14,6 @@ AAE_Entity::AAE_Entity()
 	
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh Component"));
 	StaticMeshComponent->SetupAttachment(GetRootComponent());
-
-	SetHighlightEntity(true);
 }
 
 void AAE_Entity::SetConfigurableMaterial(UAE_Material* NewConfigurableMaterial)
@@ -28,7 +26,7 @@ UAE_Material* AAE_Entity::GetConfigurableMaterial()
 	return ConfigurableMaterial;
 }
 
-void AAE_Entity::SetHighlightEntity(bool Value)
+void AAE_Entity::SetHighlightEntity(const bool &Value)
 {
 	if (StaticMeshComponent)
 	{
