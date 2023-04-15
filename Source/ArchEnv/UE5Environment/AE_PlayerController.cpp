@@ -6,4 +6,5 @@
 AAE_PlayerController::AAE_PlayerController()
 {
 	bEnableClickEvents = true;
+	bEnableMouseOverEvents = true;
 }

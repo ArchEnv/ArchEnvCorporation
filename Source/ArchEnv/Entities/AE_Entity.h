@@ -25,15 +25,21 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UAE_Material* GetConfigurableMaterial();
 
+	UFUNCTION()
+	void SetHighlightEntity(bool Value);
+
 protected:
 
 	UPROPERTY()
 	UAE_Material* ConfigurableMaterial;
+
+	void SetMouseCursorOnController(TEnumAsByte<EMouseCursor::Type> MouseCursor) const;
+
+	void CallShowMaterialSelectorWidget();
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void NotifyActorOnClicked(FKey ButtonPressed) override;
-
-	
-
+	virtual void NotifyActorBeginCursorOver() override;
+	virtual void NotifyActorEndCursorOver() override;
 };
