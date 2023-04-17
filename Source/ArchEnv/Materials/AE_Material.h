@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ArchEnv/Interfaces/AE_ConfigurableItems.h"
+#include "ArchEnv/Interfaces/Commands/AE_CommandHandlerProvider.h"
 #include "UObject/NoExportTypes.h"
 #include "AE_Material.generated.h"
 
@@ -12,7 +13,7 @@ class UAE_Image;
  * 
  */
 UCLASS(Blueprintable)
-class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems
+class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems, public IAE_CommandHandlerProvider
 {
 	GENERATED_BODY()
 protected:
@@ -25,6 +26,9 @@ protected:
 
 	UPROPERTY()
 	FString Id;
+
+	UPROPERTY()
+	UAE_CommandHandler* CommandHandler;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -46,4 +50,6 @@ public:
 	void SetThumbnail(UAE_Image* NewThumbnail);
 
 	virtual UTexture2D* GetTexture_Implementation() override;
+
+	virtual UAE_CommandHandler* GetCommandHandler_Implementation() override;
 };

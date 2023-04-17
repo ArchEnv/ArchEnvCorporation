@@ -38,3 +38,8 @@ UTexture2D* UAE_Material::GetTexture_Implementation()
 {
 	return 	Thumbnail->GetTexture();
 }
+
+UAE_CommandHandler* UAE_Material::GetCommandHandler_Implementation()
+{
+	return CommandHandler;
+}
