@@ -4,22 +4,22 @@
 #include "AE_Material.h"
 #include "ArchEnv/Utils/AE_Image.h"
 
-FString UAE_Material::GetName() const
+FString UAE_Material::GetMaterialName() const
 {
 	return Name;
 }
 
-void UAE_Material::SetName(const FString& NewName)
+void UAE_Material::SetMaterialName(const FString& NewName)
 {
 	this->Name = NewName;
 }
 
-FString UAE_Material::GetId() const
+FString UAE_Material::GetMaterialId() const
 {
 	return Id;
 }
 
-void UAE_Material::SetId(const FString& NewId)
+void UAE_Material::SetMaterialId(const FString& NewId)
 {
 	this->Id = NewId;
 }

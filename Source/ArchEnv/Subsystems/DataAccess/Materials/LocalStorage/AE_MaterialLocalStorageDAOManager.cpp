@@ -21,7 +21,7 @@ void UAE_MaterialLocalStorageDAOManager::DeleteMaterial_Implementation(UAE_Mater
 {
 	Materials.Remove(Material);
 	//Delete material file
-	UGameplayStatics::DeleteGameInSlot(Material->GetId(), 0);
+	UGameplayStatics::DeleteGameInSlot(Material->GetMaterialId(), 0);
 }
 
 TArray<UAE_Material*> UAE_MaterialLocalStorageDAOManager::GetAllMaterials_Implementation()

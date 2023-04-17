@@ -32,16 +32,16 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	FString GetName() const;
+	FString GetMaterialName() const;
 	
 	UFUNCTION()
-	void SetName(const FString& NewName);
+	void SetMaterialName(const FString& NewName);
 	
 	UFUNCTION(BlueprintCallable)
-	FString GetId() const;
+	FString GetMaterialId() const;
 
 	UFUNCTION()
-	void SetId(const FString& NewId);
+	void SetMaterialId(const FString& NewId);
 
 	UFUNCTION(BlueprintCallable)
 	UAE_Image* GetThumbnail() const;

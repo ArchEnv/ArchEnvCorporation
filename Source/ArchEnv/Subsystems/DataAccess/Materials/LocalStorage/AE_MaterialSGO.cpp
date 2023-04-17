@@ -7,10 +7,10 @@
 
 void UAE_MaterialSGO::SetSaveMaterial(const UAE_Material* SaveMaterial )
 {
-	Id = SaveMaterial->GetId();
-	MaterialName = SaveMaterial->GetName();
+	Id = SaveMaterial->GetMaterialId();
+	MaterialName = SaveMaterial->GetMaterialName();
 
-	SaveSlotName = SaveMaterial->GetId();
+	SaveSlotName = SaveMaterial->GetMaterialId();
 	UserIndex = 0;
 }
 
