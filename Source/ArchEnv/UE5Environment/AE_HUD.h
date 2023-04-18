@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void PushToMenu(TSubclassOf<UCommonActivatableWidget> ActivatableWidgetClass);
 
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void PopFromMenu(UCommonActivatableWidget* ActivatableWidgetReference);
+
 	AAE_HUD();
 	
 };
