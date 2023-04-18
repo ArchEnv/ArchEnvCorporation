@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "ArchEnv/Entities/AE_Entity.h"
 #include "GameFramework/HUD.h"
+
 #include "AE_HUD.generated.h"
 
 /**
@@ -30,10 +31,7 @@ public:
 	void SetSelectedEntity(AAE_Entity* NewSelectedEntity);
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void ShowMaterialSelectorWidget();
-
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void HideMaterialSelectorWidget();
+	void PushToMenu(TSubclassOf<UCommonActivatableWidget> ActivatableWidgetClass);
 
 	AAE_HUD();
 	

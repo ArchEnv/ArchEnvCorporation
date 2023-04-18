@@ -39,16 +39,6 @@ void AAE_Entity::SetMouseCursorOnController(TEnumAsByte<EMouseCursor::Type> Mous
 	UGameplayStatics::GetPlayerController(GetWorld(), 0)->CurrentMouseCursor = MouseCursor;
 }
 
-void AAE_Entity::CallShowMaterialSelectorWidget()
-{
-	if (const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0))
-	{
-		AAE_HUD* HUD = Cast<AAE_HUD>(PlayerController->GetHUD());
-		HUD->SetSelectedEntity(this);
-		HUD->ShowMaterialSelectorWidget();
-	}
-}
-
 void AAE_Entity::BeginPlay()
 {
 	Super::BeginPlay();
@@ -58,7 +48,9 @@ void AAE_Entity::BeginPlay()
 void AAE_Entity::NotifyActorOnClicked(FKey ButtonPressed)
 {
 	Super::NotifyActorOnClicked(ButtonPressed);
-	CallShowMaterialSelectorWidget();
+	AAE_HUD* HUD = Cast<AAE_HUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	HUD->SetSelectedEntity(this);
+	ShowMaterialSelectorWidget();
 }
 
 void AAE_Entity::NotifyActorBeginCursorOver()

@@ -35,7 +35,8 @@ protected:
 
 	void SetMouseCursorOnController(TEnumAsByte<EMouseCursor::Type> MouseCursor) const;
 
-	void CallShowMaterialSelectorWidget();
+	UFUNCTION(BlueprintImplementableEvent)
+	void ShowMaterialSelectorWidget();
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
