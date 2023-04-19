@@ -3,9 +3,32 @@
 
 #include "AE_ImageLocalStorageDAOManager.h"
 
+void UAE_ImageLocalStorageDAOManager::LoadImagesFromDataTable(const FString& Path)
+{
+	static ConstructorHelpers::FObjectFinder<UDataTable> DataTableObject(*Path);
+
+	if (DataTableObject.Succeeded())
+	{
+		const UDataTable* DataTable = DataTableObject.Object;
+		TArray<FName> RowNames = DataTable->GetRowNames();
+
+		for (FName RowName : RowNames)
+		{
+			UAE_Image* NewImage = NewObject<UAE_Image>();
+			const FAE_ImageInfo* ImageInfo = DataTable->FindRow<FAE_ImageInfo>(RowName, "");
+			
+			NewImage->SetImageId(RowName.ToString());
+			NewImage->SetTexture(ImageInfo->ImageTexture);
+
+			Images.Add(NewImage);
+		}
+	}
+}
+
 UAE_ImageLocalStorageDAOManager::UAE_ImageLocalStorageDAOManager()
 {
-	
+	const FString DataTablePath = "DataTable'/Game/Data/DefaultImagesDataTable.DefaultImagesDataTable'";
+	LoadImagesFromDataTable(DataTablePath);
 }
 
 void UAE_ImageLocalStorageDAOManager::CreateImage_Implementation(UAE_Image* Image)

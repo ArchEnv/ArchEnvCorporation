@@ -13,7 +13,10 @@ UCLASS()
 class ARCHENV_API UAE_ImageLocalStorageDAOManager : public UAE_ImageDAOManager
 {
 	GENERATED_BODY()
-	
+
+protected:
+
+	void LoadImagesFromDataTable(const FString& Path);
 	
 public:
 
