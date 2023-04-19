@@ -53,5 +53,16 @@ void UAE_ImageLocalStorageDAOManager::DeleteImage_Implementation(UAE_Image* Imag
 
 UAE_Image* UAE_ImageLocalStorageDAOManager::GetImageById_Implementation(const FString& Id)
 {
-	return Super::GetImageById_Implementation(Id);
+	UAE_Image* ImageFound = nullptr;
+
+	for (UAE_Image* Image : Images)
+	{
+		if (Image->GetImageId() == Id)
+		{
+			ImageFound = Image;
+			break;
+		}
+	}
+	
+	return ImageFound;
 }
