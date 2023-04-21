@@ -4,37 +4,47 @@
 #include "AE_Material.h"
 #include "ArchEnv/Utils/AE_Image.h"
 
-FString UAE_Material::GetName() const
+FString UAE_Material::GetMaterialName() const
 {
-	return Name;
+	return MaterialInfo.MaterialName.ToString();
 }
 
-void UAE_Material::SetName(const FString& NewName)
+void UAE_Material::SetMaterialName(const FString& NewName)
 {
-	this->Name = NewName;
+	this->MaterialInfo.MaterialName = FText::FromString(NewName);
 }
 
-FString UAE_Material::GetId() const
+FString UAE_Material::GetMaterialId() const
 {
-	return Id;
+	return MaterialInfo.MaterialId;
 }
 
-void UAE_Material::SetId(const FString& NewId)
+void UAE_Material::SetMaterialId(const FString& NewId)
 {
-	this->Id = NewId;
+	this->MaterialInfo.MaterialId = NewId;
 }
 
-UAE_Image* UAE_Material::GetThumbnail() const
+FString UAE_Material::GetImageId()
 {
-	return Thumbnail;
+	return MaterialInfo.ImageId;
 }
 
-void UAE_Material::SetThumbnail(UAE_Image* NewThumbnail)
+void UAE_Material::SetImageId(const FString& NewId)
 {
-	this->Thumbnail = NewThumbnail;
+	MaterialInfo.ImageId = NewId;
+}
+
+UAE_Image* UAE_Material::GetMaterialImage() const
+{
+	return MaterialImage;
+}
+
+void UAE_Material::SetMaterialImage(UAE_Image* NewMaterialImage)
+{
+	this->MaterialImage = NewMaterialImage;
 }
 
 UTexture2D* UAE_Material::GetTexture_Implementation()
 {
-	return 	Thumbnail->GetTexture();
+	return 	MaterialImage->GetTexture();
 }

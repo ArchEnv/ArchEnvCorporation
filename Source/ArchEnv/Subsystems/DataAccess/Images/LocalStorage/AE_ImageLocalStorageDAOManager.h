@@ -16,12 +16,11 @@ class ARCHENV_API UAE_ImageLocalStorageDAOManager : public UAE_ImageDAOManager
 
 protected:
 
-	void LoadImagesFromDataTable(const FString& Path);
+	void LoadDefaultImagesFromDataTable();
 	
 public:
 
-	UAE_ImageLocalStorageDAOManager();
-	
+	virtual void Initialize_Implementation() override;
 	virtual void CreateImage_Implementation(UAE_Image* Image) override;
 	virtual TArray<UAE_Image*> GetAllImages_Implementation() override;
 	virtual void UpdateImage_Implementation(UAE_Image* Image) override;

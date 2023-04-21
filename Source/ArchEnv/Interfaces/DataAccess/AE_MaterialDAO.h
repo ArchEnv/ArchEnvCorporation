@@ -25,6 +25,10 @@ class ARCHENV_API IAE_MaterialDAO
 public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void Initialize();
+	virtual void Initialize_Implementation() PURE_VIRTUAL(IAE_ImageDAO::Initialize);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void CreateMaterial(UAE_Material* Material);
 	virtual void CreateMaterial_Implementation(UAE_Material* Material) PURE_VIRTUAL(IAE_MaterialDAO::CreateMaterial);
 

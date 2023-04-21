@@ -10,7 +10,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class ARCHENV_API UAE_ImageDAOManager : public UObject, public IAE_ImageDAO
 {
 	GENERATED_BODY()
@@ -18,11 +18,4 @@ class ARCHENV_API UAE_ImageDAOManager : public UObject, public IAE_ImageDAO
 protected:
 	UPROPERTY()
 	TArray<UAE_Image*> Images;
-
-public:
-	virtual void CreateImage_Implementation(UAE_Image* Image) override;
-	virtual TArray<UAE_Image*> GetAllImages_Implementation() override;
-	virtual void UpdateImage_Implementation(UAE_Image* Image) override;
-	virtual void DeleteImage_Implementation(UAE_Image* Image) override;
-	virtual UAE_Image* GetImageById_Implementation(const FString& Id) override;
 };

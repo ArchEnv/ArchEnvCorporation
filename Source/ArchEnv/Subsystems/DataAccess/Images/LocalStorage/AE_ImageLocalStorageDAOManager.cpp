@@ -3,52 +3,50 @@
 
 #include "AE_ImageLocalStorageDAOManager.h"
 
-void UAE_ImageLocalStorageDAOManager::LoadImagesFromDataTable(const FString& Path)
-{
-	static ConstructorHelpers::FObjectFinder<UDataTable> DataTableObject(*Path);
+#include "ArchEnv/Settings/AE_DefaultImagesSettings.h"
 
-	if (DataTableObject.Succeeded())
+void UAE_ImageLocalStorageDAOManager::LoadDefaultImagesFromDataTable()
+{
+	const UAE_DefaultImagesSettings* DefaultImagesSettings = GetDefault<UAE_DefaultImagesSettings>();
+	
+	if (const UDataTable* ImagesDataTable = DefaultImagesSettings->DefaultImagesPath.LoadSynchronous())
 	{
-		const UDataTable* DataTable = DataTableObject.Object;
-		TArray<FName> RowNames = DataTable->GetRowNames();
+		TArray<FName> RowNames = ImagesDataTable->GetRowNames();
 
 		for (FName RowName : RowNames)
 		{
 			UAE_Image* NewImage = NewObject<UAE_Image>();
-			const FAE_ImageInfo* ImageInfo = DataTable->FindRow<FAE_ImageInfo>(RowName, "");
-			
-			NewImage->SetImageId(RowName.ToString());
-			NewImage->SetTexture(ImageInfo->ImageTexture);
+			if (const FAE_ImageInfo* ImageInfo = ImagesDataTable->FindRow<FAE_ImageInfo>(RowName, ""))
+			{
+				NewImage->SetImageId(RowName.ToString());
+				NewImage->SetTexture(ImageInfo->ImageTexture);
 
-			Images.Add(NewImage);
+				Images.Add(NewImage);
+			}
 		}
 	}
 }
 
-UAE_ImageLocalStorageDAOManager::UAE_ImageLocalStorageDAOManager()
+void UAE_ImageLocalStorageDAOManager::Initialize_Implementation()
 {
-	const FString DataTablePath = "DataTable'/Game/Data/DefaultImagesDataTable.DefaultImagesDataTable'";
-	LoadImagesFromDataTable(DataTablePath);
+	LoadDefaultImagesFromDataTable();
 }
 
 void UAE_ImageLocalStorageDAOManager::CreateImage_Implementation(UAE_Image* Image)
 {
-	Super::CreateImage_Implementation(Image);
 }
 
 TArray<UAE_Image*> UAE_ImageLocalStorageDAOManager::GetAllImages_Implementation()
 {
-	return Super::GetAllImages_Implementation();
+	return Images;
 }
 
 void UAE_ImageLocalStorageDAOManager::UpdateImage_Implementation(UAE_Image* Image)
 {
-	Super::UpdateImage_Implementation(Image);
 }
 
 void UAE_ImageLocalStorageDAOManager::DeleteImage_Implementation(UAE_Image* Image)
 {
-	Super::DeleteImage_Implementation(Image);
 }
 
 UAE_Image* UAE_ImageLocalStorageDAOManager::GetImageById_Implementation(const FString& Id)

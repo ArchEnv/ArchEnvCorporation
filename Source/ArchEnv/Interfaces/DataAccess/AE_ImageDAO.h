@@ -23,6 +23,9 @@ class ARCHENV_API IAE_ImageDAO
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void Initialize();
+	virtual void Initialize_Implementation() PURE_VIRTUAL(IAE_ImageDAO::Initialize);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void CreateImage(UAE_Image* Image);
