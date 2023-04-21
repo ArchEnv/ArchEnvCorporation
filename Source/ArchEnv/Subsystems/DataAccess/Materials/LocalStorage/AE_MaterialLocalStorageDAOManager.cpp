@@ -51,7 +51,7 @@ void UAE_MaterialLocalStorageDAOManager::OnItemClicked(UObject* Item)
 	if (const APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), 0))
 	{
 		const AAE_HUD* HUD = PC->GetHUD<AAE_HUD>();
-		HUD->GetSelectedEntity()->SetConfigurableMaterial(Cast<UAE_Material>(Item));
+		HUD->GetSelectedEntity()->SetEntityMaterial(Cast<UAE_Material>(Item));
 	}
 }
 

@@ -16,14 +16,15 @@ AAE_Entity::AAE_Entity()
 	StaticMeshComponent->SetupAttachment(GetRootComponent());
 }
 
-void AAE_Entity::SetConfigurableMaterial(UAE_Material* NewConfigurableMaterial)
+void AAE_Entity::SetEntityMaterial(UAE_Material* NewEntityMaterial)
 {
-	ConfigurableMaterial = NewConfigurableMaterial;
+	EntityMaterial = NewEntityMaterial;
+	OnEntityMaterialChangedDelegate.Broadcast(EntityMaterial);
 }
 
-UAE_Material* AAE_Entity::GetConfigurableMaterial()
+UAE_Material* AAE_Entity::GetEntityMaterial()
 {
-	return ConfigurableMaterial;
+	return EntityMaterial;
 }
 
 void AAE_Entity::SetHighlightEntity(const bool &Value)

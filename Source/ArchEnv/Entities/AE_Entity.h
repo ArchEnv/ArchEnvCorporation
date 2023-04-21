@@ -7,6 +7,9 @@
 #include "AE_Entity.generated.h"
 
 class UAE_Material;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEntityMaterialChanged, UAE_Material*, NewMaterial);
+
 UCLASS()
 class ARCHENV_API AAE_Entity : public AActor
 {
@@ -19,11 +22,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
 	UStaticMeshComponent* StaticMeshComponent;
 
-	UFUNCTION(BlueprintCallable)
-	void SetConfigurableMaterial(UAE_Material* NewConfigurableMaterial);
+	UPROPERTY(BlueprintAssignable)
+	FOnEntityMaterialChanged OnEntityMaterialChangedDelegate;
 
 	UFUNCTION(BlueprintCallable)
-	UAE_Material* GetConfigurableMaterial();
+	void SetEntityMaterial(UAE_Material* NewEntityMaterial);
+
+	UFUNCTION(BlueprintCallable)
+	UAE_Material* GetEntityMaterial();
 
 	UFUNCTION()
 	void SetHighlightEntity(const bool &Value);
@@ -31,7 +37,7 @@ public:
 protected:
 
 	UPROPERTY()
-	UAE_Material* ConfigurableMaterial;
+	UAE_Material* EntityMaterial;
 
 	void SetMouseCursorOnController(TEnumAsByte<EMouseCursor::Type> MouseCursor) const;
 
