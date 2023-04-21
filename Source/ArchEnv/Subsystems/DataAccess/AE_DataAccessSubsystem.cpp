@@ -15,8 +15,8 @@ void UAE_DataAccessSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	MaterialDAOManager = NewObject<UAE_MaterialLocalStorageDAOManager>(this);
 	ImagesDAOManager = NewObject<UAE_ImageLocalStorageDAOManager>(this);
 
-	IAE_ImageDAO::Execute_Initialize(ImagesDAOManager);
-	IAE_MaterialDAO::Execute_Initialize(MaterialDAOManager);
+	ImagesDAOManager->Initialize();
+	MaterialDAOManager->Initialize();
 }
 
 UAE_MaterialDAOManager* UAE_DataAccessSubsystem::GetMaterialsDAOManager() const

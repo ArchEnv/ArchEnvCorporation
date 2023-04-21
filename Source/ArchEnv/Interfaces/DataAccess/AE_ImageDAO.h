@@ -8,7 +8,7 @@
 #include "AE_ImageDAO.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI, BlueprintType)
+UINTERFACE(MinimalAPI, BlueprintType, NotBlueprintable)
 class UAE_ImageDAO : public UInterface
 {
 	GENERATED_BODY()
@@ -23,27 +23,21 @@ class ARCHENV_API IAE_ImageDAO
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void Initialize();
-	virtual void Initialize_Implementation() PURE_VIRTUAL(IAE_ImageDAO::Initialize);
+	UFUNCTION(BlueprintCallable)
+	virtual void Initialize() PURE_VIRTUAL(IAE_ImageDAO::Initialize,);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void CreateImage(UAE_Image* Image);
-	virtual void CreateImage_Implementation(UAE_Image* Image) PURE_VIRTUAL(IAE_ImageDAO::CreateImage);
+	UFUNCTION(BlueprintCallable)
+	virtual void CreateImage(UAE_Image* Image) PURE_VIRTUAL(IAE_ImageDAO::CreateImage,);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	TArray<UAE_Image*> GetAllImages();
-	virtual TArray<UAE_Image*> GetAllImages_Implementation() PURE_VIRTUAL(IAE_ImageDAO::GetAllImages, return {};);
+	UFUNCTION(BlueprintCallable)
+	virtual TArray<UAE_Image*> GetAllImages() PURE_VIRTUAL(IAE_ImageDAO::GetAllImages, return {};);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void UpdateImage(UAE_Image* Image);
-	virtual void UpdateImage_Implementation(UAE_Image* Image) PURE_VIRTUAL(IAE_ImageDAO::UpdateImage);
+	UFUNCTION(BlueprintCallable)
+	virtual void UpdateImage(UAE_Image* Image) PURE_VIRTUAL(IAE_ImageDAO::UpdateImage,);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void DeleteImage(UAE_Image* Image);
-	virtual void DeleteImage_Implementation(UAE_Image* Image) PURE_VIRTUAL(IAE_ImageDAO::DeleteImage);
+	UFUNCTION(BlueprintCallable)
+	virtual void DeleteImage(UAE_Image* Image) PURE_VIRTUAL(IAE_ImageDAO::DeleteImage,);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	UAE_Image* GetImageById(const FString& Id);
-	virtual UAE_Image* GetImageById_Implementation(const FString& Id) PURE_VIRTUAL(IAE_ImageDAO::GetImageById, return nullptr;);
+	UFUNCTION(BlueprintCallable)
+	virtual UAE_Image* GetImageById(const FString& Id) PURE_VIRTUAL(IAE_ImageDAO::GetImageById, return nullptr;);
 };

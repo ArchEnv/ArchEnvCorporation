@@ -27,29 +27,29 @@ void UAE_ImageLocalStorageDAOManager::LoadDefaultImagesFromDataTable()
 	}
 }
 
-void UAE_ImageLocalStorageDAOManager::Initialize_Implementation()
+void UAE_ImageLocalStorageDAOManager::Initialize()
 {
 	LoadDefaultImagesFromDataTable();
 }
 
-void UAE_ImageLocalStorageDAOManager::CreateImage_Implementation(UAE_Image* Image)
+void UAE_ImageLocalStorageDAOManager::CreateImage(UAE_Image* Image)
 {
 }
 
-TArray<UAE_Image*> UAE_ImageLocalStorageDAOManager::GetAllImages_Implementation()
+TArray<UAE_Image*> UAE_ImageLocalStorageDAOManager::GetAllImages()
 {
 	return Images;
 }
 
-void UAE_ImageLocalStorageDAOManager::UpdateImage_Implementation(UAE_Image* Image)
+void UAE_ImageLocalStorageDAOManager::UpdateImage(UAE_Image* Image)
 {
 }
 
-void UAE_ImageLocalStorageDAOManager::DeleteImage_Implementation(UAE_Image* Image)
+void UAE_ImageLocalStorageDAOManager::DeleteImage(UAE_Image* Image)
 {
 }
 
-UAE_Image* UAE_ImageLocalStorageDAOManager::GetImageById_Implementation(const FString& Id)
+UAE_Image* UAE_ImageLocalStorageDAOManager::GetImageById(const FString& Id)
 {
 	UAE_Image* ImageFound = nullptr;
 

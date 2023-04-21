@@ -20,10 +20,10 @@ protected:
 	
 public:
 
-	virtual void Initialize_Implementation() override;
-	virtual void CreateImage_Implementation(UAE_Image* Image) override;
-	virtual TArray<UAE_Image*> GetAllImages_Implementation() override;
-	virtual void UpdateImage_Implementation(UAE_Image* Image) override;
-	virtual void DeleteImage_Implementation(UAE_Image* Image) override;
-	virtual UAE_Image* GetImageById_Implementation(const FString& Id) override;
+	virtual void Initialize() override;
+	virtual void CreateImage(UAE_Image* Image) override;
+	virtual TArray<UAE_Image*> GetAllImages() override;
+	virtual void UpdateImage(UAE_Image* Image) override;
+	virtual void DeleteImage(UAE_Image* Image) override;
+	virtual UAE_Image* GetImageById(const FString& Id) override;
 };

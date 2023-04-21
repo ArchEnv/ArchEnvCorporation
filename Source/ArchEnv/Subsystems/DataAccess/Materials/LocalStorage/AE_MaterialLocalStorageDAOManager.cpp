@@ -10,43 +10,43 @@
 #include "ArchEnv/UE5Environment/AE_HUD.h"
 #include "Kismet/GameplayStatics.h"
 
-void UAE_MaterialLocalStorageDAOManager::Initialize_Implementation()
+void UAE_MaterialLocalStorageDAOManager::Initialize()
 {
 	LoadMaterialsFromDataTable();
 	LoadTexturesFromImageSubsystem();
 }
 
-void UAE_MaterialLocalStorageDAOManager::CreateMaterial_Implementation(UAE_Material* Material)
+void UAE_MaterialLocalStorageDAOManager::CreateMaterial(UAE_Material* Material)
 {
 	Materials.Add(Material);
 	AsyncMaterialSaveToDisk(Material);
 }
 
-void UAE_MaterialLocalStorageDAOManager::DeleteMaterial_Implementation(UAE_Material* Material)
+void UAE_MaterialLocalStorageDAOManager::DeleteMaterial(UAE_Material* Material)
 {
 	Materials.Remove(Material);
 	//Delete material file
 	UGameplayStatics::DeleteGameInSlot(Material->GetMaterialId(), 0);
 }
 
-TArray<UAE_Material*> UAE_MaterialLocalStorageDAOManager::GetAllMaterials_Implementation()
+TArray<UAE_Material*> UAE_MaterialLocalStorageDAOManager::GetAllMaterials()
 {
 	return Materials;
 }
 
-void UAE_MaterialLocalStorageDAOManager::UpdateMaterial_Implementation(UAE_Material* Material)
+void UAE_MaterialLocalStorageDAOManager::UpdateMaterial(UAE_Material* Material)
 {
 	const int32 index = Materials.Find(Material);
 	Materials[index] = Material;
 	AsyncMaterialSaveToDisk(Material);
 }
 
-TArray<UObject*> UAE_MaterialLocalStorageDAOManager::GetItems_Implementation()
+TArray<UObject*> UAE_MaterialLocalStorageDAOManager::GetItems()
 {
 	return TArray<UObject*>(Materials);
 }
 
-void UAE_MaterialLocalStorageDAOManager::OnItemClicked_Implementation(UObject* Item)
+void UAE_MaterialLocalStorageDAOManager::OnItemClicked(UObject* Item)
 {
 	if (const APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), 0))
 	{
@@ -55,7 +55,7 @@ void UAE_MaterialLocalStorageDAOManager::OnItemClicked_Implementation(UObject* I
 	}
 }
 
-TArray<UObject*> UAE_MaterialLocalStorageDAOManager::FilterItemsByString_Implementation(const FString& String)
+TArray<UObject*> UAE_MaterialLocalStorageDAOManager::FilterItemsByString(const FString& String)
 {
 	TArray<UObject*> FilteredArray;
 	for (const auto Material : Materials)
@@ -111,7 +111,7 @@ void UAE_MaterialLocalStorageDAOManager::LoadTexturesFromImageSubsystem()
 		{
 			for (auto Material : Materials)
 			{
-				if (UAE_Image* ImageFound = IAE_ImageDAO::Execute_GetImageById(DataAccessSubsystem->GetImagesDAOManager(), Material->GetImageId()))
+				if (UAE_Image* ImageFound = DataAccessSubsystem->GetImagesDAOManager()->GetImageById(Material->GetImageId()))
 				{
 					Material->SetMaterialImage(ImageFound);
 				}
