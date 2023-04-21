@@ -16,14 +16,15 @@ AAE_Entity::AAE_Entity()
 	StaticMeshComponent->SetupAttachment(GetRootComponent());
 }
 
-void AAE_Entity::SetConfigurableMaterial(UAE_Material* NewConfigurableMaterial)
+void AAE_Entity::SetEntityMaterial(UAE_Material* NewEntityMaterial)
 {
-	ConfigurableMaterial = NewConfigurableMaterial;
+	EntityMaterial = NewEntityMaterial;
+	OnEntityMaterialChangedDelegate.Broadcast(EntityMaterial);
 }
 
-UAE_Material* AAE_Entity::GetConfigurableMaterial()
+UAE_Material* AAE_Entity::GetEntityMaterial()
 {
-	return ConfigurableMaterial;
+	return EntityMaterial;
 }
 
 void AAE_Entity::SetHighlightEntity(const bool &Value)
@@ -39,16 +40,6 @@ void AAE_Entity::SetMouseCursorOnController(TEnumAsByte<EMouseCursor::Type> Mous
 	UGameplayStatics::GetPlayerController(GetWorld(), 0)->CurrentMouseCursor = MouseCursor;
 }
 
-void AAE_Entity::CallShowMaterialSelectorWidget()
-{
-	if (const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0))
-	{
-		AAE_HUD* HUD = Cast<AAE_HUD>(PlayerController->GetHUD());
-		HUD->SetSelectedEntity(this);
-		HUD->ShowMaterialSelectorWidget();
-	}
-}
-
 void AAE_Entity::BeginPlay()
 {
 	Super::BeginPlay();
@@ -58,7 +49,9 @@ void AAE_Entity::BeginPlay()
 void AAE_Entity::NotifyActorOnClicked(FKey ButtonPressed)
 {
 	Super::NotifyActorOnClicked(ButtonPressed);
-	CallShowMaterialSelectorWidget();
+	AAE_HUD* HUD = Cast<AAE_HUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	HUD->SetSelectedEntity(this);
+	ShowMaterialSelectorWidget();
 }
 
 void AAE_Entity::NotifyActorBeginCursorOver()
