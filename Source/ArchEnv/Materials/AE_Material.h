@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ArchEnv/Interfaces/AE_ConfigurableItems.h"
+#include "ArchEnv/Interfaces/Commands/AE_CommandHandlerProvider.h"
 #include "Engine/DataTable.h"
 #include "UObject/NoExportTypes.h"
 #include "AE_Material.generated.h"
@@ -30,7 +31,7 @@ struct FAE_MaterialInfo : public FTableRowBase
  * 
  */
 UCLASS(Blueprintable)
-class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems
+class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems, public IAE_CommandHandlerProvider
 {
 	GENERATED_BODY()
 protected:
@@ -40,6 +41,9 @@ protected:
 
 	UPROPERTY()
 	FAE_MaterialInfo MaterialInfo;
+
+	UPROPERTY()
+	UAE_CommandHandler* CommandHandler;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -67,4 +71,7 @@ public:
 	void SetMaterialImage(UAE_Image* NewMaterialImage);
 
 	virtual UTexture2D* GetTexture_Implementation() override;
+
+	UFUNCTION(BlueprintCallable)
+	virtual UAE_CommandHandler* GetCommandHandler_Implementation() override;
 };
