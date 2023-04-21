@@ -5,10 +5,20 @@
 
 UTexture2D* UAE_Image::GetTexture() const
 {
-	return ImageTexture;
+	return ImageInfo.ImageTexture;
 }
 
 void UAE_Image::SetTexture(UTexture2D* Texture)
 {
-	this->ImageTexture = Texture;
+	this->ImageInfo.ImageTexture = Texture;
+}
+
+FString UAE_Image::GetImageId()
+{
+	return ImageInfo.ImageId;
+}
+
+void UAE_Image::SetImageId(FString NewId)
+{
+	ImageInfo.ImageId = NewId;
 }

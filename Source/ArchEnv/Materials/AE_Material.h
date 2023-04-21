@@ -4,31 +4,42 @@
 
 #include "CoreMinimal.h"
 #include "ArchEnv/Interfaces/AE_ConfigurableItems.h"
-#include "ArchEnv/Interfaces/Commands/AE_CommandHandlerProvider.h"
+#include "Engine/DataTable.h"
 #include "UObject/NoExportTypes.h"
 #include "AE_Material.generated.h"
 
 class UAE_Image;
+
+USTRUCT(BlueprintType)
+struct FAE_MaterialInfo : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+	FText MaterialName;
+
+	UPROPERTY(EditAnywhere)
+	FString MaterialId;
+
+	UPROPERTY(EditAnywhere)
+	FString ImageId;
+	
+};
+
 /**
  * 
  */
 UCLASS(Blueprintable)
-class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems, public IAE_CommandHandlerProvider
+class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems
 {
 	GENERATED_BODY()
 protected:
 	
 	UPROPERTY()
-	UAE_Image* Thumbnail;
+	UAE_Image* MaterialImage;
 
 	UPROPERTY()
-	FString Name;
-
-	UPROPERTY()
-	FString Id;
-
-	UPROPERTY()
-	UAE_CommandHandler* CommandHandler;
+	FAE_MaterialInfo MaterialInfo;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -43,13 +54,17 @@ public:
 	UFUNCTION()
 	void SetMaterialId(const FString& NewId);
 
+	UFUNCTION()
+	FString GetImageId();
+
+	UFUNCTION()
+	void SetImageId(const FString& NewId);
+	
 	UFUNCTION(BlueprintCallable)
-	UAE_Image* GetThumbnail() const;
+	UAE_Image* GetMaterialImage() const;
 
 	UFUNCTION(BlueprintCallable)
-	void SetThumbnail(UAE_Image* NewThumbnail);
+	void SetMaterialImage(UAE_Image* NewMaterialImage);
 
 	virtual UTexture2D* GetTexture_Implementation() override;
-
-	virtual UAE_CommandHandler* GetCommandHandler_Implementation() override;
 };

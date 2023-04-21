@@ -11,7 +11,7 @@
 			"AdditionalDependencies": [
 				"Engine",
 				"CoreUObject",
-				"CommonUI"
+				"DeveloperSettings"
 			]
 		}
 	],
@@ -22,10 +22,6 @@
 			"TargetAllowList": [
 				"Editor"
 			]
-		},
-		{
-			"Name": "CommonUI",
-			"Enabled": true
 		}
 	]
 }

@@ -18,19 +18,20 @@ class ARCHENV_API UAE_MaterialLocalStorageDAOManager : public UAE_MaterialDAOMan
 {
 	GENERATED_BODY()
 public:
-	UAE_MaterialLocalStorageDAOManager();
-	
-	virtual void CreateMaterial_Implementation(UAE_Material* Material) override;
-	virtual void DeleteMaterial_Implementation(UAE_Material* Material) override;
-	virtual TArray<UAE_Material*> GetAllMaterials_Implementation() override;
-	virtual void UpdateMaterial_Implementation(UAE_Material* Material) override;
 
-	virtual TArray<UObject*> GetItems_Implementation() override;
-	virtual void OnItemClicked_Implementation(UObject* Item) override;
-	virtual TArray<UObject*> FilterItemsByString_Implementation(const FString& String) override;
+	virtual void Initialize() override;
+	virtual void CreateMaterial(UAE_Material* Material) override;
+	virtual void DeleteMaterial(UAE_Material* Material) override;
+	virtual TArray<UAE_Material*> GetAllMaterials() override;
+	virtual void UpdateMaterial(UAE_Material* Material) override;
+
+	virtual TArray<UObject*> GetItems() override;
+	virtual void OnItemClicked(UObject* Item) override;
+	virtual TArray<UObject*> FilterItemsByString(const FString& String) override;
 
 protected:
 
 	void AsyncMaterialSaveToDisk(const UAE_Material* SaveMaterial);
-	
+	void LoadMaterialsFromDataTable();
+	void LoadTexturesFromImageSubsystem();
 };
