@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ArchEnv/Interfaces/AE_ConfigurableItems.h"
+#include "ArchEnv/Interfaces/AE_GenericViewItem.h"
 #include "ArchEnv/Interfaces/Commands/AE_CommandHandlerProvider.h"
 #include "Engine/DataTable.h"
 #include "UObject/NoExportTypes.h"
@@ -31,7 +31,7 @@ struct FAE_MaterialInfo : public FTableRowBase
  * 
  */
 UCLASS(Blueprintable)
-class ARCHENV_API UAE_Material : public UObject, public IAE_ConfigurableItems, public IAE_CommandHandlerProvider
+class ARCHENV_API UAE_Material : public UObject, public IAE_GenericViewItem, public IAE_CommandHandlerProvider
 {
 	GENERATED_BODY()
 protected:

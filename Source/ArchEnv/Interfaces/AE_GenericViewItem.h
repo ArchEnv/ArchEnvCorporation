@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "AE_ConfigurableItems.generated.h"
+#include "AE_GenericViewItem.generated.h"
 
 class IAE_ConfigurableControllers;
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI, BlueprintType)
-class UAE_ConfigurableItems : public UInterface
+class UAE_GenericViewItem : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -18,7 +18,7 @@ class UAE_ConfigurableItems : public UInterface
 /**
  * 
  */
-class ARCHENV_API IAE_ConfigurableItems
+class ARCHENV_API IAE_GenericViewItem
 {
 	GENERATED_BODY()
 
