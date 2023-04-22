@@ -44,7 +44,7 @@ void UAE_Material::SetMaterialImage(UAE_Image* NewMaterialImage)
 	this->MaterialImage = NewMaterialImage;
 }
 
-UTexture2D* UAE_Material::GetTexture_Implementation()
+UTexture2D* UAE_Material::GetTexture()
 {
 	return 	MaterialImage->GetTexture();
 }

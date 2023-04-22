@@ -70,7 +70,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetMaterialImage(UAE_Image* NewMaterialImage);
 
-	virtual UTexture2D* GetTexture_Implementation() override;
+	virtual UTexture2D* GetTexture() override;
 
 	UFUNCTION(BlueprintCallable)
 	virtual UAE_CommandHandler* GetCommandHandler_Implementation() override;

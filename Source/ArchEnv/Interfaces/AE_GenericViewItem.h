@@ -9,7 +9,7 @@
 class IAE_ConfigurableControllers;
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI, BlueprintType)
+UINTERFACE(MinimalAPI, BlueprintType, NotBlueprintable)
 class UAE_GenericViewItem : public UInterface
 {
 	GENERATED_BODY()
@@ -25,6 +25,6 @@ class ARCHENV_API IAE_GenericViewItem
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	UTexture2D* GetTexture();
+	UFUNCTION(BlueprintCallable)
+	virtual UTexture2D* GetTexture() PURE_VIRTUAL(IAE_GenericViewItem::GetTexture, return nullptr;);
 };
