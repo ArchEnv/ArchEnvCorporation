@@ -96,6 +96,7 @@ void UAE_MaterialLocalStorageDAOManager::LoadMaterialsFromDataTable()
 				NewMaterial->SetMaterialId(RowName.ToString());
 				NewMaterial->SetMaterialName(MaterialInfo->MaterialName.ToString());
 				NewMaterial->SetImageId(MaterialInfo->ImageId);
+				NewMaterial->SetMaterialInstance(MaterialInfo->MaterialInstance);
 
 				Materials.Add(NewMaterial);
 			}			

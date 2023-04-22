@@ -6,7 +6,6 @@
 #include "ArchEnv/Interfaces/AE_ConfigurableItems.h"
 #include "ArchEnv/Interfaces/Commands/AE_CommandHandlerProvider.h"
 #include "Engine/DataTable.h"
-#include "UObject/NoExportTypes.h"
 #include "AE_Material.generated.h"
 
 class UAE_Image;
@@ -24,6 +23,9 @@ struct FAE_MaterialInfo : public FTableRowBase
 
 	UPROPERTY(EditAnywhere)
 	FString ImageId;
+
+	UPROPERTY(EditAnywhere)
+	UMaterialInstance* MaterialInstance;
 	
 };
 
@@ -46,6 +48,13 @@ protected:
 	UAE_CommandHandler* CommandHandler;
 
 public:
+
+	UFUNCTION(BlueprintCallable)
+	UMaterialInstance* GetMaterialInstance();
+
+	UFUNCTION(BlueprintCallable)
+	void SetMaterialInstance(UMaterialInstance* NewMaterialInstance);
+	
 	UFUNCTION(BlueprintCallable)
 	FString GetMaterialName() const;
 	

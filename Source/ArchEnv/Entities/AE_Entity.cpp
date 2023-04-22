@@ -19,6 +19,7 @@ AAE_Entity::AAE_Entity()
 void AAE_Entity::SetEntityMaterial(UAE_Material* NewEntityMaterial)
 {
 	EntityMaterial = NewEntityMaterial;
+	StaticMeshComponent->SetMaterial(0, NewEntityMaterial->GetMaterialInstance());
 	OnEntityMaterialChangedDelegate.Broadcast(EntityMaterial);
 }
 

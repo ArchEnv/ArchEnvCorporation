@@ -4,6 +4,16 @@
 #include "AE_Material.h"
 #include "ArchEnv/Utils/AE_Image.h"
 
+UMaterialInstance* UAE_Material::GetMaterialInstance()
+{
+	return MaterialInfo.MaterialInstance;
+}
+
+void UAE_Material::SetMaterialInstance(UMaterialInstance* NewMaterialInstance)
+{
+	MaterialInfo.MaterialInstance = NewMaterialInstance;
+}
+
 FString UAE_Material::GetMaterialName() const
 {
 	return MaterialInfo.MaterialName.ToString();
